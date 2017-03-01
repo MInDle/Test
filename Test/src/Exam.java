@@ -95,7 +95,7 @@ public class Exam
 		
 		shortestPath(0, N-1);
 		makingPath(0, N - 1, N - 1);
-		System.out.print("최종경로 = ");
+		System.out.print("최종경로 = " );
         for(int node : steps){
             System.out.print(node + " ");
         }
