@@ -17,6 +17,7 @@ public class Main
 			char ch = (char)reader.read();
 			
 			System.out.println((int)ch);
+			System.out.println("first commit");
 
 		} catch (Exception e)
 		{
