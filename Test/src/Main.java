@@ -2,6 +2,9 @@ import java.util.*;
 import java.io.*;
 import java.math.BigInteger;
 
+/*
+ * dell 9560!!
+ */
 public class Main
 {
 	static int[][] array;
