@@ -3,11 +3,7 @@ import java.io.*;
 import java.math.BigInteger;
 
 /*
-<<<<<<< HEAD
- * home desktop
-=======
- * dell 9560!!
->>>>>>> branch 'master' of https://github.com/MInDle/Test.git
+ * i got it!!!!
  */
 public class Main
 {
