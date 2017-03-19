@@ -23,26 +23,102 @@ public class Main
 		{
 			totalSize = Integer.parseInt(reader.readLine());
 			arr = new char[totalSize][totalSize];
-			f(0, 0, totalSize);
-
-			StringBuilder result = new StringBuilder("");
-			for (int i = 0; i < totalSize; i++)
+			
+			if(totalSize != 1)
 			{
-				for (int j = 0; j < totalSize; j++)
+//				f(0, 0, totalSize);
+				f2();
+
+				StringBuilder result = new StringBuilder("");
+				for (int i = 0; i < totalSize; i++)
 				{
-					result.append(arr[i][j]);
+					for (int j = 0; j < totalSize; j++)
+					{
+						result.append(arr[i][j]);
+					}
+					
+					if(i + 1 != totalSize)
+					{
+						result.append("\n");
+					}
 				}
 				
-				if(i + 1 != totalSize)
-				{
-					result.append("\n");
-				}
+				System.out.print(result.toString());
+			}
+			else
+			{
+				System.out.print("*");
 			}
 			
-			System.out.println(result.toString());
 		} catch (Exception e)
 		{
 			// TODO: handle exception
+		}
+	}
+	
+	public static void f2()
+	{
+		int x = 0, y = 0;
+		int tempX, tempY;
+		int size = 3;
+		while(true)
+		{			
+			tempX = x;
+			tempY = y;
+			for(int i = 0; i < 8; i++)
+			{
+				switch (i)
+				{
+				case 1:
+					y = tempY;
+					x = tempX + size;
+					break;
+				case 2:
+					y = tempY;
+					x = tempX + (size * 2);
+					break;
+				case 3:
+					y = tempY + size;
+					x = tempX;
+					break;
+				case 4:
+					y = tempY + (size * 2);
+					x = tempX;
+					break;
+				case 5:
+					y = tempY + (size * 2);
+					x = tempX + size;
+					break;
+				case 6:
+					y = tempY + size;
+					x = tempX + (size * 2);
+					break;
+				case 7:
+					y = tempY + (size * 2);
+					x = tempX + (size * 2);
+					break;
+				default:
+					break;
+				}
+				arr[y][x] = '*';
+				arr[y][x + 1] = '*';
+				arr[y][x + 2] = '*';
+				arr[y + 1][x] = '*';
+				/* arr[y+1][x+1]=' '; */
+				arr[y + 1][x + 2] = '*';
+				arr[y + 2][x] = '*';
+				arr[y + 2][x + 1] = '*';
+				arr[y + 2][x + 2] = '*';
+			}		
+			x = size;
+			y = size;
+			size *= 3;
+			
+			if(size == totalSize)
+			{
+				break;
+			}
+			
 		}
 	}
 
@@ -70,7 +146,5 @@ public class Main
 			arr[y + 2][x + 1] = '*';
 			arr[y + 2][x + 2] = '*';
 		}
-		
-		
 	}
 }
