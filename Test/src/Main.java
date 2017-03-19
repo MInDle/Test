@@ -26,8 +26,8 @@ public class Main
 			
 			if(totalSize != 1)
 			{
-//				f(0, 0, totalSize);
-				f2();
+				drawStar10(0, 0, totalSize);
+//				f2();
 
 				StringBuilder result = new StringBuilder("");
 				for (int i = 0; i < totalSize; i++)
@@ -47,7 +47,7 @@ public class Main
 			}
 			else
 			{
-				System.out.print("*");
+//				System.out.print("*");
 			}
 			
 		} catch (Exception e)
@@ -112,7 +112,7 @@ public class Main
 			}		
 			x = size;
 			y = size;
-			size *= 3;
+			size += 3;
 			
 			if(size == totalSize)
 			{
@@ -122,18 +122,18 @@ public class Main
 		}
 	}
 
-	public static void f(int y, int x, int size)
+	public static void drawStar10(int y, int x, int size)
 	{
 		if (size > 3)
 		{
-			f(y, x, size / 3);
-			f(y, x + (size / 3), size / 3);
-			f(y, x + (size / 3) * 2, size / 3);
-			f(y + (size / 3), x, size / 3);
-			f(y + (size / 3), x + (size / 3) * 2, size / 3);
-			f(y + (size / 3) * 2, x, size / 3);
-			f(y + (size / 3) * 2, x + (size / 3), size / 3);
-			f(y + (size / 3) * 2, x + (size / 3) * 2, size / 3);
+			drawStar10(y, x, size / 3);
+			drawStar10(y, x + (size / 3), size / 3);
+			drawStar10(y, x + (size / 3) * 2, size / 3);
+			drawStar10(y + (size / 3), x, size / 3);
+			drawStar10(y + (size / 3), x + (size / 3) * 2, size / 3);
+			drawStar10(y + (size / 3) * 2, x, size / 3);
+			drawStar10(y + (size / 3) * 2, x + (size / 3), size / 3);
+			drawStar10(y + (size / 3) * 2, x + (size / 3) * 2, size / 3);
 		} else
 		{
 			arr[y][x] = '*';
