@@ -62,6 +62,19 @@ public class Testest
 			arr[y + 2][x + 1] = '*';
 			arr[y + 2][x + 2] = '*';
 		}
+		
+		StringBuilder result = new StringBuilder("");
+		for (int i = 0; i < totalSize; i++)
+		{
+			for (int j = 0; j < totalSize; j++)
+			{
+				result.append(arr[i][j]);
+			}
+			result.append("\n");
+		}
+		
+		System.out.println(result.toString());
+		System.out.println("==========================================================================================");
 	}
 
 }
