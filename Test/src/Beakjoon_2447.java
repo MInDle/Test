@@ -4,10 +4,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-public class Testest
+public class Beakjoon_2447
 {
 	static int totalSize;
 	static char[][] arr;
+	static int count = 0;
 
 	public static void main(String[] args)
 	{
@@ -74,6 +75,8 @@ public class Testest
 		}
 		
 		System.out.println(result.toString());
+		System.out.println(y + ", " + x + ", " + size);
+		System.out.println(count++);
 		System.out.println("==========================================================================================");
 	}
 
