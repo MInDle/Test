@@ -2,53 +2,29 @@ import java.util.*;
 import java.io.*;
 import java.math.BigInteger;
 
-/*
- * i got it!!!!
- * also i got it!!!!
- * really ?!?!?!?!?!?
- */
 public class Main
 {	
-	static int totalSize;
-	static char[][] arr;
-	static int count = 0;
-
+	static StringBuilder result = new StringBuilder("");
+	
 	public static void main(String[] args)
 	{
 		Writer writer = new BufferedWriter(new OutputStreamWriter(System.out));
 		InputStreamReader input = new InputStreamReader(System.in);
 		BufferedReader reader = new BufferedReader(input);
-
+		
+		int size = 0;
+		String[] inputStr = null;
 		try
 		{
-			totalSize = Integer.parseInt(reader.readLine());
-			arr = new char[totalSize][totalSize];
+			size = Integer.parseInt(reader.readLine());
+			inputStr = new String[size];
 			
-			if(totalSize != 1)
+			for(int i = 0; i < size; i++)
 			{
-				drawStar10(0, 0, totalSize);
-//				f2();
-
-				StringBuilder result = new StringBuilder("");
-				for (int i = 0; i < totalSize; i++)
-				{
-					for (int j = 0; j < totalSize; j++)
-					{
-						result.append(arr[i][j]);
-					}
-					
-					if(i + 1 != totalSize)
-					{
-						result.append("\n");
-					}
-				}
-				
-				System.out.print(result.toString());
+				inputStr[i] = reader.readLine();
 			}
-			else
-			{
-//				System.out.print("*");
-			}
+			
+			getVPS(size, inputStr);
 			
 		} catch (Exception e)
 		{
@@ -56,95 +32,88 @@ public class Main
 		}
 	}
 	
-	public static void f2()
+	public static boolean getVPS(int size, String[] inputStr)
 	{
-		int x = 0, y = 0;
-		int tempX, tempY;
-		int size = 3;
-		while(true)
-		{			
-			tempX = x;
-			tempY = y;
-			for(int i = 0; i < 8; i++)
+		LinkedList<Character> stack = new LinkedList<Character>();
+		int strSize = 0;
+		char temp = 0;
+		char popChar = 0;
+		boolean isVPS = true;
+		
+		
+		try
+		{
+			for(int i = 0; i < size; i++)
 			{
-				switch (i)
+				strSize = inputStr[i].length();
+				
+				for(int j = 0; j < strSize && isVPS; j++)
 				{
-				case 1:
-					y = tempY;
-					x = tempX + size;
-					break;
-				case 2:
-					y = tempY;
-					x = tempX + (size * 2);
-					break;
-				case 3:
-					y = tempY + size;
-					x = tempX;
-					break;
-				case 4:
-					y = tempY + (size * 2);
-					x = tempX;
-					break;
-				case 5:
-					y = tempY + (size * 2);
-					x = tempX + size;
-					break;
-				case 6:
-					y = tempY + size;
-					x = tempX + (size * 2);
-					break;
-				case 7:
-					y = tempY + (size * 2);
-					x = tempX + (size * 2);
-					break;
-				default:
-					break;
+					temp = inputStr[i].charAt(j);
+					
+					if(temp == '(')
+					{
+						stack.addLast(temp);
+					}
+					else
+					{
+						if(stack.isEmpty())
+						{
+							isVPS = false;
+						}
+						else
+						{
+							popChar = stack.removeLast();
+							
+							if(popChar == '(')
+							{
+								
+							}
+							else
+							{
+								isVPS = false;
+							}
+							
+						}
+						
+					}
+
 				}
-				arr[y][x] = '*';
-				arr[y][x + 1] = '*';
-				arr[y][x + 2] = '*';
-				arr[y + 1][x] = '*';
-				/* arr[y+1][x+1]=' '; */
-				arr[y + 1][x + 2] = '*';
-				arr[y + 2][x] = '*';
-				arr[y + 2][x + 1] = '*';
-				arr[y + 2][x + 2] = '*';
-			}		
-			x = size;
-			y = size;
-			size += 3;
-			
-			if(size == totalSize)
-			{
-				break;
+				
+				if(stack.size() != 0)
+				{
+					isVPS = false;
+				}
+				
+				if(isVPS)
+				{
+					result.append("YES");
+				}
+				else
+				{
+					result.append("NO");
+				}
+				
+				if(i < size - 1)
+				{
+					result.append("\n");
+				}
+				
+				isVPS = true;
+				stack = new LinkedList<Character>();
+				
 			}
 			
-		}
-	}
-
-	public static void drawStar10(int y, int x, int size)
-	{
-		if (size > 3)
+			System.out.println(result.toString());
+		} catch (Exception e)
 		{
-			drawStar10(y, x, size / 3);
-			drawStar10(y, x + (size / 3), size / 3);
-			drawStar10(y, x + (size / 3) * 2, size / 3);
-			drawStar10(y + (size / 3), x, size / 3);
-			drawStar10(y + (size / 3), x + (size / 3) * 2, size / 3);
-			drawStar10(y + (size / 3) * 2, x, size / 3);
-			drawStar10(y + (size / 3) * 2, x + (size / 3), size / 3);
-			drawStar10(y + (size / 3) * 2, x + (size / 3) * 2, size / 3);
-		} else
-		{
-			arr[y][x] = '*';
-			arr[y][x + 1] = '*';
-			arr[y][x + 2] = '*';
-			arr[y + 1][x] = '*';
-			/* arr[y+1][x+1]=' '; */
-			arr[y + 1][x + 2] = '*';
-			arr[y + 2][x] = '*';
-			arr[y + 2][x + 1] = '*';
-			arr[y + 2][x + 2] = '*';
+			// TODO: handle exception
+			e.printStackTrace();
 		}
+		
+		
+		
+		return true;
 	}
+	
 }
